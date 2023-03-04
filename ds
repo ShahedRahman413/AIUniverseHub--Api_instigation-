@@ -5,3 +5,6 @@ Array.map(element => `<li>${element} </li>).join("")
 Array.sort( (a=0 , b= 0) => {
     return (Date.parse(value1) - Date.parse(value2) )
     }
+
+    ${data.pricing?[0].price ? data.pricing[0].price : 'null' }
+${data.pricing? data.pricing[0].price : 'null' }

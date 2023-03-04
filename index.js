@@ -15,7 +15,7 @@ const showData = (data) => {
     const cardContainer = document.getElementById('card-container')
     cardContainer.innerHTML = ''
     //   console.log(data.tools[0].image)
-    num += 1
+    
     data.forEach(data => {
         // console.log(data)
         const div = document.createElement('div')
@@ -100,15 +100,16 @@ const showModalData = (data) => {
         // console.log(price)
         const div = document.createElement('div')
         div.innerHTML = `
-   <h1 class="mt-4">${price.price ? price.price : 'free of cost'}<br> 
+   <h1 class="mt-4 bg-base-200 px-3 py-2 rounded-xl">${price.price ?price.price : 'free of cost'}<br> 
    ${price.plan ? price.plan : 'free plan'}</h1>`
         pricing.appendChild(div)
 
         // picture of modal
         const picture = document.getElementById('picture')
         picture.innerHTML = `
-        <img src="${data.image_link[0]}">
-        <h1></h1>
+        <img src="${data.image_link[0] }">
+        <h1 class="text-2xl font-bold">${data.input_output_examples[0].input ?data.input_output_examples[0].input:'Can you give any example?'}</h1>
+        <h1 class="mt-2">${data.input_output_examples[0].output ?data.input_output_examples[0].output:'No! Not Yet! Take a break!!!'}</h1>
         `
 
 
@@ -121,16 +122,32 @@ const showModalData = (data) => {
     // <h1>${data.pricing[2].price} <br> ${data.pricing[2].plan}</h1>`
 
     // feature of modal
-    const feature = document.getElementById('feature')
-    console.log(data.features['1'].feature_name)
+    const feature = document.getElementById('modal-feature')
+    console.log(data)
+    // console.log(data.features['1'].feature_name)
 
     feature.innerHTML = `
     
-  <p>1.${data.features['1']}<br> 2.${data.features['2']}<br> 3.${data.features['3']} </p>
+  <p>1.${data.features['1'].feature_name}<br> 2.${data.features['2'].feature_name}<br> 3.${data.features['3'].feature_name} </p>
     
     
     `
+
+
+    const integrations =document.getElementById('integrations')
+    integrations.innerHTML=''
+    data.integrations.forEach(social =>{
+      // console.log(social)
+      const ol=document.createElement('ol')
+      num+=1
+      ol.innerHTML =`
+      <li>${num}. ${social ?social:'no data found'}</li>
+      `
+      integrations.appendChild(ol)
+    })
+
 }
+
 
 // {
 //     data.features.forEach(feature => {

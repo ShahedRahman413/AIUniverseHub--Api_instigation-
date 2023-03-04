@@ -24,7 +24,7 @@
         <div class=" text-center">
             <button onclick="showMoreData()" class=" bg-orange-700 px-3 py-2 rounded-xl text-white mt-8 mb-12">See
                 More</button>
-        </div>
+        </div> 
 
         <section>
             <!-- The button to open modal -->
@@ -32,26 +32,26 @@
 
             <!-- Put this part before </body> tag -->
             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-            <div class="modal h-full max-w-5xl w-11/12">
-                <div class="modal-box relative">
-                    <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <div class="grid gap-3 p-4 grid-cols-2" class="w-11/12 max-w-fit">
+            <div class="modal h-full  ">
+                <div class="modal-box max-w-5xl bg-red-50 w-11/12 ">
+                    <label for="my-modal-3" class="btn btn-sm btn-circle absolute bg-red-400 right-2 text-white top-2">✕</label>
+                    <div class="flex gap-3 p-4 flex-col-reverse md:flex-row " class="w-11/12 max-w-fit">
                         <div>
                             <div>
                                 <h1 class="text-xl" id="description"></h1>
                             </div>
                             <div>
-                                <div id="pricing" class="grid gap-6 grid-cols-3">
+                                <div id="pricing" class="grid gap-6 grid-cols-3 ">
 
                                 </div>  
                             </div>
                             <div id="feature-integration" class="grid grid-cols-2">
-                                <div id="feature">
+                                <div id="modal-feature">
 
                                 </div>
-                                <div class="p-4" id="intergration">
+                                <div class="p-4" id="integrations">
 
-                                </div>
+                                </div>       
                             </div>
                         </div>
                         <div id="picture">
