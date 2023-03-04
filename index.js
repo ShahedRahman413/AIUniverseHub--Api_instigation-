@@ -1,4 +1,4 @@
-
+num = 0
 const loadData = () => {
     fetch('https://openapi.programming-hero.com/api/ai/tools')
         .then((res) => res.json())
@@ -6,16 +6,16 @@ const loadData = () => {
     // .catch((err)=>{
     //     console.log(err)
     // })
-   
+
 }
 
 
 const showData = (data) => {
     // console.log(data.tools.slice(0,1))
     const cardContainer = document.getElementById('card-container')
-    cardContainer.innerHTML=''
+    cardContainer.innerHTML = ''
     //   console.log(data.tools[0].image)
-    
+    num += 1
     data.forEach(data => {
         // console.log(data)
         const div = document.createElement('div')
@@ -24,10 +24,12 @@ const showData = (data) => {
     <figure><img src="${data.image}" /></figure>
     <div class="card-body">
       <h2 class="card-title">Features</h2>
-        <ol>
+        <ol id="feature">
+
+
         <li>${'1'}${'.'} ${data.features[0]}</li>
         <li>${'2'}${'.'} ${data.features[1]} </li>
-         <li>${'3'}${'.'} ${data.features[2] ?data.features[2]:'feature not found'}</li>
+         <li>${'3'}${'.'} ${data.features[2] ? data.features[2] : ''}</li>
         </ol>
         <hr>
       <div class="grid grid-cols-2 items-center space-x-24 ">
@@ -44,13 +46,28 @@ const showData = (data) => {
   </div>
     `
         cardContainer.appendChild(div)
-    });
+    })
+
+
+    // const featureContainer = document.getElementById('feature')
+    // console.log(data)
+    // data.data.features.forEach(feature => {
+    //     console.log(feature)
+    //     const li = document.getElementById('li')
+    //     li.innerHTML = `
+    //      <h1>${num} ${data.feature}</h1>
+    //      `
+    // })
+
+    // featureContainer.appendChild(li)
+    //     ;
 }
+
 
 
 loadData()
 // see more data function
-const showMoreData=()=>{
+const showMoreData = () => {
     fetch('https://openapi.programming-hero.com/api/ai/tools')
         .then((res) => res.json())
         .then((data) => showData(data.data.tools))
@@ -62,47 +79,63 @@ const showMoreData=()=>{
 
 
 // modal data 
-const loadModalData=(id)=>{
-    const url=`https://openapi.programming-hero.com/api/ai/tool/${id}`
+const loadModalData = (id) => {
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
     fetch(url)
-    .then(res => res.json())
-    .then (data => showModalData(data.data))
+        .then(res => res.json())
+        .then(data => showModalData(data.data))
 }
 
-const showModalData =(data)=>{
-    console.log(data)
-    const description =document.getElementById('description')
-    description.innerHTML=`
+const showModalData = (data) => {
+    // console.log(data)   
+    const description = document.getElementById('description')
+    description.innerHTML = `
     ${data.description}
-    <div class="grid grid-cols-3"> 
-        <h1>${data.pricing.forEach(price => {
-            console.log(price)
-        })}</h1>
-    </div>
+   
     `
-    const pricing=document.getElementById('pricing')
-    pricing.innerHTML=`
-    <h1>${data.pricing[0].price} <br> ${data.pricing[0].plan}</h1>
-    <h1>${data.pricing[1].price} <br> ${data.pricing[1].plan}</h1>
-    <h1>${data.pricing[2].price} <br> ${data.pricing[2].plan}</h1>`
-    const feature=document.getElementById('feature')
-    console.log(data.features)
-    feature.innerHTML=`
-    <h2 class="card-title">Features</h2>
-    <ol>
-    <li>${'1'}${'.'} ${data.features.feature_name}</li>
-    <li>${'2'}${'.'} ${data.features.feature_name} </li>
-     <li>${'3'}${'.'} ${data.features.feature_name}</li>
-    </ol>
-    <hr>
+    // pricing modal
+    const pricing = document.getElementById('pricing')
+    pricing.innerHTML = ''
+    data.pricing.forEach(price => {
+        // console.log(price)
+        const div = document.createElement('div')
+        div.innerHTML = `
+   <h1 class="mt-4">${price.price ? price.price : 'free of cost'}<br> 
+   ${price.plan ? price.plan : 'free plan'}</h1>`
+        pricing.appendChild(div)
+
+        // picture of modal
+        const picture = document.getElementById('picture')
+        picture.innerHTML = `
+        <img src="${data.image_link[0]}">
+        <h1></h1>
+        `
+
+
+    })
+
+
+    // pricing.innerHTML=`
+    // <h1>${data.pricing[0].price ?data.pricing[0].price:'free of cost'} <br> ${data.pricing[0].plan}</h1>
+    // <h1>${data.pricing[1].price} <br> ${data.pricing[1].plan}</h1>
+    // <h1>${data.pricing[2].price} <br> ${data.pricing[2].plan}</h1>`
+
+    // feature of modal
+    const feature = document.getElementById('feature')
+    console.log(data.features['1'].feature_name)
+
+    feature.innerHTML = `
+    
+  <p>1.${data.features['1']}<br> 2.${data.features['2']}<br> 3.${data.features['3']} </p>
+    
+    
     `
-    }
+}
 
-
-
-
-// { data.features.forEach(feature =>{
-//     console.log(feature)
-//     })}
+// {
+//     data.features.forEach(feature => {
+//         console.log(feature)
+//     })
 // }
+
 
