@@ -1,0 +1,7 @@
+${news?.others_info?.is_trending ? `<span class="badge text-bg-warning">Trending</span>` : ""}
+<p class="card-text">1.${tool.features[0]}<br> 2.${tool.features[1]}<br> 3.${tool.features[2]} </p>
+data.feature['1'].feature_name
+Array.map(element => `<li>${element} </li>).join("")
+Array.sort( (a=0 , b= 0) => {
+    return (Date.parse(value1) - Date.parse(value2) )
+    }

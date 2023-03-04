@@ -1,29 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment 6</title>
     <script src="https://kit.fontawesome.com/12f8a52f0a.js" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
-<script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="container mx-auto">
     <header class="text-center">
         <h1 class="mt-12 font-medium text-3xl">AI Universe Hub</h1>
         <button class="bg-orange-700 px-3 py-2 rounded-xl text-white mt-8 mb-12">Sort By Data</button>
     </header>
-    <main >
-    
-        <section  id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <main>
+
+        <section id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         </section>
-       <div class=" text-center">
-        <button onclick="showMoreData()" class=" bg-orange-700 px-3 py-2 rounded-xl text-white mt-8 mb-12">See More</button>
-       </div>
+        <div class=" text-center">
+            <button onclick="showMoreData()" class=" bg-orange-700 px-3 py-2 rounded-xl text-white mt-8 mb-12">See
+                More</button>
+        </div>
+
+        <section>
+            <!-- The button to open modal -->
+
+
+            <!-- Put this part before </body> tag -->
+            <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+            <div class="modal">
+              <div class="modal-box relative">
+                <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <div  class="w-11/12 max-w-5xl">
+                    <div>
+                        <div>
+                            <h1 id="description"></h1>
+                        </div>
+                        <div>
+                            <div id="pricing" class="grid grid-cols-3">
+                                
+                            </div>
+                        </div>
+                        <div id="feature-integration" class="grid grid-cols-2">
+                            <div id="feature">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <!-- <h3 id="description" class="text-lg font-bold">Congratulations random Internet user!</h3>
+                <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p> -->
+              </div>
+            </div>
+        </section>
     </main>
- 
+
     <script src="index.js"></script>
 </body>
+
 </html>
