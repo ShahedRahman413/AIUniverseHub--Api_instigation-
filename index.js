@@ -1,8 +1,9 @@
 num = 0
-const loadData = () => {
-    fetch('https://openapi.programming-hero.com/api/ai/tools')
-        .then((res) => res.json())
-        .then((data) => showData(data.data.tools.slice(0, 6)))
+const loadData = async() => {
+  const url=(`https://openapi.programming-hero.com/api/ai/tools`)
+ const res= await fetch(url)
+       const data =await res.json()
+        showData(data.data.tools.slice(0, 6))
     // .catch((err)=>{
     //     console.log(err)
     // })
@@ -17,6 +18,7 @@ const showData = (data) => {
     //   console.log(data.tools[0].image)
     
     data.forEach(data => {
+     
         // console.log(data)
         const div = document.createElement('div')
         div.innerHTML = `
@@ -35,7 +37,7 @@ const showData = (data) => {
       <div class="grid grid-cols-2 items-center space-x-24 ">
         <div >
             <h1 class="text-xl font-bold">${data.name}</h1>
-            <p><i class="fa-regular fa-calendar-days"></i> ${data.published_in}</p>
+            <p id="date"><i class="fa-regular fa-calendar-days"></i> ${data.published_in}</p>
         </div>
         <div class="text-red-400">
     
@@ -68,9 +70,11 @@ const showData = (data) => {
 loadData()
 // see more data function
 const showMoreData = () => {
-    fetch('https://openapi.programming-hero.com/api/ai/tools')
+     fetch('https://openapi.programming-hero.com/api/ai/tools')
         .then((res) => res.json())
         .then((data) => showData(data.data.tools))
+ 
+
 }
 
 
@@ -80,14 +84,18 @@ const showMoreData = () => {
 
 // modal data 
 const loadModalData = (id) => {
+  toggleLoader(true)
+ 
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
     fetch(url)
         .then(res => res.json())
         .then(data => showModalData(data.data))
+
 }
 
 const showModalData = (data) => {
-    // console.log(data)   
+  toggleLoader(false)
+  // console.log(data)   
     const description = document.getElementById('description')
     description.innerHTML = `
     ${data.description}
@@ -107,7 +115,7 @@ const showModalData = (data) => {
         // picture of modal
         const picture = document.getElementById('picture')
         picture.innerHTML = `
-        <img src="${data.image_link[0] }">
+        <p><img class=" relative" src="${data.image_link[0] }"> <button class="bg-orange-700 px-6 py-2 rounded-xl absolute  top-10 right-0">${data.accuracy.score*100 }% accuracy</button></p>
         <h1 class="text-2xl font-bold">${data.input_output_examples[0].input ?data.input_output_examples[0].input:'Can you give any example?'}</h1>
         <h1 class="mt-2">${data.input_output_examples[0].output ?data.input_output_examples[0].output:'No! Not Yet! Take a break!!!'}</h1>
         `
@@ -143,11 +151,25 @@ const showModalData = (data) => {
       ol.innerHTML =`
       <li>${num}. ${social ?social:'no data found'}</li>
       `
+  
+
       integrations.appendChild(ol)
+      
+
     })
 
 }
 
+const toggleLoader =(isLoading)=>{
+  const loader =document.getElementById('spin-loading')
+  if (isLoading) {
+    loader.classList.remove('hidden')
+  }
+  else{
+    loader.classList.add('hidden')
+
+  }
+}
 
 // {
 //     data.features.forEach(feature => {
